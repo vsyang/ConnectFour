@@ -1,13 +1,14 @@
+@using System.Drawing
 @inject GameState State
 
 <HeadContent>
-  <style>
-      :root {
-        --board-bg: yellow;
-        --player1: red;
-        --player2: blue;
-      }
-  </style>
+    <style>
+        :root {
+            --board-bg: @ColorTranslator.ToHtml(BoardColor);
+            --player1: @ColorTranslator.ToHtml(Player1Color);
+            --player2: @ColorTranslator.ToHtml(Player2Color);
+        }
+    </style>
 </HeadContent>
 
 @if (State.CurrentTurn == 0)
@@ -115,4 +116,13 @@
     player1Name = "Player 1";
     player2Name = "Player 2";
   }
+
+  [Parameter]
+  public Color BoardColor { get; set; } = ColorTranslator.FromHtml("yellow");
+
+  [Parameter]
+  public Color Player1Color { get; set; } = ColorTranslator.FromHtml("red");
+
+  [Parameter]
+  public Color Player2Color { get; set; } = ColorTranslator.FromHtml("blue");
 }
